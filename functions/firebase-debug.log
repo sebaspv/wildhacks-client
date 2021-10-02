@@ -1,0 +1,107 @@
+[debug] [2021-10-02T19:00:20.031Z] ----------------------------------------------------------------------
+[debug] [2021-10-02T19:00:20.033Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\RohanNisha\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2021-10-02T19:00:20.034Z] CLI Version:   9.18.0
+[debug] [2021-10-02T19:00:20.034Z] Platform:      win32
+[debug] [2021-10-02T19:00:20.034Z] Node Version:  v14.15.3
+[debug] [2021-10-02T19:00:20.035Z] Time:          Sat Oct 02 2021 12:00:20 GMT-0700 (Pacific Daylight Time)
+[debug] [2021-10-02T19:00:20.035Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-10-02T19:00:20.114Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-10-02T19:00:20.115Z] > authorizing via signed-in user (rohanf6219@gmail.com)
+[debug] [2021-10-02T19:00:20.115Z] [iam] checking project animalaid-d089d for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]
+[debug] [2021-10-02T19:00:20.117Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/animalaid-d089d:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get"]}
+[debug] [2021-10-02T19:00:20.293Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=52","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:20.294Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/animalaid-d089d/serviceAccounts/animalaid-d089d@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-10-02T19:00:20.523Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'animalaid-d089d'...
+[info] 
+[info] i  deploying firestore, functions 
+[info] i  firestore: reading indexes from firestore.indexes.json... 
+[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
+[debug] [2021-10-02T19:00:20.528Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/animalaid-d089d:test  
+ {"source":{"files":[{"name":"firestore.rules","content":"rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /{document=**} {\n      allow read, write: if\n          request.time < timestamp.date(2021, 11, 1);\n    }\n  }\n}"}]}}
+[debug] [2021-10-02T19:00:20.918Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:20 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  cloud.firestore: rules file firestore.rules compiled successfully 
+[debug] [2021-10-02T19:00:20.921Z] Validating nodejs source
+[debug] [2021-10-02T19:00:24.049Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "14"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "firebase-admin": "^9.12.0",
+    "firebase-functions": "^3.14.1"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[debug] [2021-10-02T19:00:24.049Z] Building nodejs source
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2021-10-02T19:00:24.051Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/animalaid-d089d/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2021-10-02T19:00:24.052Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/animalaid-d089d/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2021-10-02T19:00:24.052Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/animalaid-d089d/services/cloudbuild.googleapis.com  
+ 
+[debug] [2021-10-02T19:00:24.535Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:24.558Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2021-10-02T19:00:24.635Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2021-10-02T19:00:24.636Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/animalaid-d089d/adminSdkConfig  
+ 
+[debug] [2021-10-02T19:00:24.847Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:24.848Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/animalaid-d089d/configs  
+ 
+[debug] [2021-10-02T19:00:25.106Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:25.107Z] Analyzing nodejs backend spec
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged functions (25.59 KB) for uploading 
+[debug] [2021-10-02T19:00:25.420Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/animalaid-d089d/locations/-/functions  
+ 
+[debug] [2021-10-02T19:00:25.976Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:25.978Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/animalaid-d089d/releases?pageSize=10&pageToken=  
+ 
+[debug] [2021-10-02T19:00:25.979Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1/projects/animalaid-d089d/databases/(default)/collectionGroups/-/indexes  
+ 
+[debug] [2021-10-02T19:00:26.340Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:26.341Z] >>> HTTP REQUEST GET https://firebaserules.googleapis.com/v1/projects/animalaid-d089d/rulesets/ad677f19-4710-4080-8379-6dd9449ce64e  
+ 
+[debug] [2021-10-02T19:00:26.358Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:26.358Z] >>> HTTP REQUEST GET https://firestore.googleapis.com/v1/projects/animalaid-d089d/databases/(default)/collectionGroups/-/fields?filter=indexConfig.usesAncestorConfig=false  
+ 
+[debug] [2021-10-02T19:00:26.573Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:25 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] +  firestore: deployed indexes in firestore.indexes.json successfully 
+[debug] [2021-10-02T19:00:26.685Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:26 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  firestore: latest version of firestore.rules already up to date, skipping upload... 
+[debug] [2021-10-02T19:00:26.688Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/animalaid-d089d/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2021-10-02T19:00:27.282Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:26 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:27.283Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-4bbd7396-e659-4f75-9490-926f33de26bf/9e161b48-458e-4f7b-aaab-51e482f4adfc.zip?GoogleAccessId=service-609581396080@gcf-admin-robot.iam.gserviceaccount.com&Expires=1633203026&Signature=1YSU3fwEcOnddEK4Z1LVA3cVMALBzKRdIdfyBljRz33h%2FveZgpVWFX9ExRpvFX8yqGmAu%2Bg1bcP303yR5R%2FclXzVtvUG7Z8s%2BZOICCP3zX114Q1bCcgDVccdRmCzJuu9%2FZ7i99clzmwr5axLxM4zRj6I%2F1yIt7EvwIkB2d49FI031X%2FBToDCzW4UsZZm9aOSXHz2KZyZBGd1DIuSnz7iBGa9DLMo7A4FRSV1hUTIgXBViM%2F0lfNiJmQx4HdJvu6dJLroHVjaZXJLwDlaKPgsL%2FhyE%2FtM1JW3xFQsNW5jUZFQwI0JuKFrNMsknfVBbcNRKRsocORrywNp9Zbwp507UA%3D%3D  
+ <request body omitted>
+[debug] [2021-10-02T19:00:27.534Z] <<< HTTP RESPONSE 200 {"x-guploader-uploadid":"ADPycdvzKM0cbM8k_RPALQ1r-bVUyET-Wczz40I_fonRatOkRPqRrK25VJXZ-0MCtcJtHP-OkdzC_swn3vMHNVUrhsjc3El9nQ","etag":"\"ce9b23723bf3f675df5adca60ef96a9f\"","x-goog-generation":"1633201226900420","x-goog-metageneration":"1","x-goog-hash":"crc32c=ukKw4A==, md5=zpsjcjvz9nXfWtymDvlqnw==","x-goog-stored-content-length":"26204","x-goog-stored-content-encoding":"identity","vary":"Origin","content-length":"0","date":"Sat, 02 Oct 2021 19:00:26 GMT","server":"UploadServer","content-type":"text/html; charset=UTF-8","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""}
+[info] +  functions: functions folder uploaded successfully 
+[debug] [2021-10-02T19:00:27.536Z] [rules] releasing cloud.firestore with ruleset projects/animalaid-d089d/rulesets/ad677f19-4710-4080-8379-6dd9449ce64e
+[debug] [2021-10-02T19:00:27.536Z] >>> HTTP REQUEST PATCH https://firebaserules.googleapis.com/v1/projects/animalaid-d089d/releases/cloud.firestore  
+ {"release":{"name":"projects/animalaid-d089d/releases/cloud.firestore","rulesetName":"projects/animalaid-d089d/rulesets/ad677f19-4710-4080-8379-6dd9449ce64e"}}
+[debug] [2021-10-02T19:00:27.931Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sat, 02 Oct 2021 19:00:27 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-10-02T19:00:27.931Z] [rules] updated release projects/animalaid-d089d/releases/cloud.firestore
+[info] +  firestore: released rules firestore.rules to cloud.firestore 
+[info] i  functions: updating Node.js 14 function api(us-central1)... 
+[debug] [2021-10-02T19:00:27.938Z] >>> HTTP REQUEST PATCH https://cloudfunctions.googleapis.com/v1/projects/animalaid-d089d/locations/us-central1/functions/api {"updateMask":"name,sourceUploadUrl,entryPoint,runtime,httpsTrigger,labels,environmentVariables"} 
+ {"name":"projects/animalaid-d089d/locations/us-central1/functions/api","sourceUploadUrl":"https://storage.googleapis.com/gcf-upload-us-central1-4bbd7396-e659-4f75-9490-926f33de26bf/9e161b48-458e-4f7b-aaab-51e482f4adfc.zip?GoogleAccessId=service-609581396080@gcf-admin-robot.iam.gserviceaccount.com&Expires=1633203026&Signature=1YSU3fwEcOnddEK4Z1LVA3cVMALBzKRdIdfyBljRz33h%2FveZgpVWFX9ExRpvFX8yqGmAu%2Bg1bcP303yR5R%2FclXzVtvUG7Z8s%2BZOICCP3zX114Q1bCcgDVccdRmCzJuu9%2FZ7i99clzmwr5axLxM4zRj6I%2F1yIt7EvwIkB2d49FI031X%2FBToDCzW4UsZZm9aOSXHz2KZyZBGd1DIuSnz7iBGa9DLMo7A4FRSV1hUTIgXBViM%2F0lfNiJmQx4HdJvu6dJLroHVjaZXJLwDlaKPgsL%2FhyE%2FtM1JW3xFQsNW5jUZFQwI0JuKFrNMsknfVBbcNRKRsocORrywNp9Zbwp507UA%3D%3D","entryPoint":"api","runtime":"nodejs14","httpsTrigger":{},"labels":{"deployment-tool":"cli-firebase"},"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"animalaid-d089d\",\"storageBucket\":\"animalaid-d089d.appspot.com\",\"locationId\":\"us-west4\"}","GCLOUD_PROJECT":"animalaid-d089d"}}
